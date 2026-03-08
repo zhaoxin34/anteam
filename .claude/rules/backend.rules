@@ -1,0 +1,57 @@
+# Backend Development Rules
+
+## 项目结构
+
+- 源代码必须放在 `backend/src/` 目录下
+- 测试代码必须放在 `backend/tests/` 目录下
+- 使用分层架构: api/ → service/ → repository/ → models/
+
+## 代码规范
+
+### 格式化
+- 使用 Black 格式化代码，行长度 100
+- 使用 isort 排序导入
+- 命令: `make format`
+
+### 类型检查
+- 使用 mypy 进行类型检查，strict 模式
+- 命令: `make type-check`
+
+### 代码检查
+- 使用 ruff 进行代码检查
+- 命令: `make lint`
+
+### 测试
+- 使用 pytest + pytest-asyncio
+- 覆盖率目标: 80%
+- 命令: `make test`
+
+## API 设计
+
+1. RESTful 风格端点
+2. 使用 Pydantic v2 定义 Request/Response
+3. 统一错误响应格式
+4. 路由放在 `backend/src/api/` 目录
+5. 业务逻辑放在 `backend/src/service/` 目录
+6. 数据访问放在 `backend/src/repository/` 目录
+7. 数据模型放在 `backend/src/models/` 目录
+
+## 数据库
+
+- 使用 SQLModel (支持 Pydantic + SQLAlchemy)
+- 数据库迁移使用 Alembic
+- 配置文件放在 `backend/src/core/` 目录
+
+## Bot 接入
+
+- 通过继承 `BaseBot` 抽象类接入 AI Agent
+- Bot 实现放在 `backend/src/service/bot/` 目录
+
+## 开发流程
+
+1. 编写代码
+2. 运行 `make format` 格式化代码
+3. 运行 `make type-check` 类型检查
+4. 运行 `make lint` 代码检查
+5. 运行 `make test` 测试
+6. 全部通过后提交

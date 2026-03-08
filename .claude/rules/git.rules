@@ -1,0 +1,69 @@
+# Git Workflow Rules
+
+## 分支策略
+
+- 使用 Trunk-Based 开发模式
+- 主要分支: `main`
+- 功能开发直接在 `main` 分支进行
+- 长期分支: 使用功能分支但保持短生命周期
+
+## 提交规范
+
+遵循 Conventional Commits 规范:
+
+```
+<type>(<scope>): <subject>
+
+<body>
+
+<footer>
+```
+
+### 类型 (type)
+
+- `feat`: 新功能
+- `fix`: Bug 修复
+- `docs`: 文档更新
+- `style`: 代码格式调整 (不影响功能)
+- `refactor`: 代码重构 (不影响功能)
+- `test`: 测试相关
+- `chore`: 构建过程或辅助工具变动
+
+### 示例
+
+```
+feat(auth): add login API endpoint
+
+Add login endpoint with JWT token generation.
+
+Closes #123
+```
+
+## Commit Hooks
+
+项目配置了 pre-commit hooks，在提交前会自动检查:
+
+1. 代码格式化 (Black, isort, Prettier)
+2. 类型检查 (mypy, TypeScript)
+3. 代码检查 (ruff, ESLint)
+
+## Git Hooks 配置
+
+使用 `git config core.hooksPath hooks` 设置 hooks 目录
+
+## 常用命令
+
+```bash
+# 提交
+git add <files>
+git commit -m "feat(api): add new endpoint"
+
+# 推送到远程
+git push
+
+# 查看状态
+git status
+
+# 查看提交历史
+git log
+```

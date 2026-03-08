@@ -1,0 +1,57 @@
+# Frontend Development Rules
+
+## 项目结构
+
+- 源代码必须放在 `frontend/src/` 目录下
+- 测试代码必须放在 `frontend/tests/` 目录下
+- 组件放在 `frontend/src/components/` 目录
+- 页面放在 `frontend/src/pages/` 目录
+- API 调用放在 `frontend/src/api/` 目录
+- 自定义 Hooks 放在 `frontend/src/hooks/` 目录
+- 状态管理放在 `frontend/src/stores/` 目录
+- 类型定义放在 `frontend/src/types/` 目录
+
+## 代码规范
+
+### 格式化
+- 使用 Prettier 格式化代码
+- 命令: `npm run format`
+
+### 代码检查
+- 使用 ESLint (Airbnb config)
+- 命令: `npm run lint`
+
+### 类型检查
+- TypeScript strict 模式
+- 命令: `npx tsc --noEmit`
+
+### 测试
+- 使用 Vitest
+- 命令: `npm run test`
+
+## 组件规范
+
+1. 使用函数组件 + Hooks
+2. 使用 TypeScript 泛型
+3. 组件 Props 必须定义类型
+4. 组件文件使用 PascalCase 命名
+5. 样式文件使用 CSS Modules 或 styled-components
+
+## 状态管理
+
+- 使用 Redux Toolkit 管理客户端状态
+- 使用 React Query 管理服务端状态 (可选)
+
+## 开发流程
+
+1. 编写代码
+2. 运行 `npm run format` 格式化代码
+3. 运行 `npm run lint` 代码检查
+4. 运行 `npx tsc --noEmit` 类型检查
+5. 运行 `npm run test` 测试
+6. 全部通过后提交
+
+## 构建
+
+- 开发环境: `npm run dev`
+- 生产构建: `npm run build`
