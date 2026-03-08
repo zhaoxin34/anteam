@@ -65,7 +65,7 @@ anteam/
 ### 后端规范
 
 1. **代码风格**
-   - 使用 Black 格式化 (行长度 100)
+   - 使用 Black 格式化 (行长度 180)
    - 使用 isort 排序导入
    - 使用 mypy strict 模式类型检查
    - 使用 ruff 代码检查
@@ -125,12 +125,16 @@ npm run dev       # 启动开发服务器
 # 代码质量
 npm run lint      # 代码检查 (ESLint)
 npm run format   # 代码格式化 (Prettier)
+npm run type-check  # 类型检查 (TypeScript)
 
 # 测试
 npm run test     # 运行测试 (Vitest)
 
 # 构建
 npm run build    # 生产构建
+
+# CI
+make ci          # 运行所有检查
 ```
 
 ## 注意事项
@@ -145,3 +149,14 @@ npm run build    # 生产构建
 - 代码格式化 (Black, isort)
 - 类型检查 (mypy)
 - 代码检查 (ruff)
+
+## 开发流程
+
+每次完成代码编写后，必须执行以下步骤：
+
+1. **代码简化**: 运行 `/simplify` 检查并优化代码
+2. **代码格式化**: 运行 `make format` (后端) 或 `npm run format` (前端)
+3. **类型检查**: 运行 `make type-check` (后端) 或 `npm run type-check` (前端)
+4. **代码检查**: 运行 `make lint` (后端) 或 `npm run lint` (前端)
+5. **运行测试**: 运行 `make test` (后端) 或 `npm run test` (前端)
+6. **Git 提交**: 确保所有检查通过后再提交
