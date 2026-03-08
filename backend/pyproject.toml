@@ -54,7 +54,7 @@ disallow_untyped_calls = false
 
 [tool.ruff.lint]
 select = ["E", "F", "W", "I", "N", "UP", "B", "A", "C4", "T20"]
-ignore = ["E501"]
+ignore = ["E501", "B008"]
 
 [tool.ruff]
 line-length = 180
