@@ -24,9 +24,13 @@ format:
 type-check:
 	npm run type-check
 
-# Run tests
+# Run tests (skip if no test files exist)
 test:
-	npm run test
+	@if ls src/**/*.test.{ts,tsx} 1> /dev/null 2>&1; then \
+		npm run test -- --run; \
+	else \
+		echo "No test files found, skipping tests"; \
+	fi
 
 # CI - run all checks
 ci: lint format type-check test
