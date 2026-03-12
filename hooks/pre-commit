@@ -1,0 +1,46 @@
+#!/bin/bash
+# Pre-commit hook for Anteam
+
+set -e
+
+echo "Running pre-commit checks..."
+
+# Backend checks
+if [ -d "backend" ]; then
+    echo "Running backend checks..."
+    cd backend
+
+    # Run lint
+    uv run ruff check src/ tests/ || { echo "Lint failed"; exit 1; }
+
+    # Run type check
+    uv run mypy src/ || { echo "Type check failed"; exit 1; }
+
+    # Run tests (if test files exist)
+    if ls tests/test_*.py >/dev/null 2>&1; then
+        uv run pytest tests/ -v --tb=short || { echo "Tests failed"; exit 1; }
+    fi
+
+    cd ..
+fi
+
+# Frontend checks (if exists)
+if [ -d "frontend" ]; then
+    echo "Running frontend checks..."
+    cd frontend
+
+    # Run lint
+    npm run lint || { echo "Lint failed"; exit 1; }
+
+    # Run type check
+    npm run type-check || { echo "Type check failed"; exit 1; }
+
+    # Run tests (if test files exist)
+    if ls src/**/*.test.{ts,tsx} >/dev/null 2>&1 || ls src/**/*.spec.{ts,tsx} >/dev/null 2>&1; then
+        npm run test || { echo "Tests failed"; exit 1; }
+    fi
+
+    cd ..
+fi
+
+echo "All pre-commit checks passed!"
