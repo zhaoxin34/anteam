@@ -2,33 +2,32 @@
 
 # Install dependencies
 install:
-	pip install -r requirements.txt
-	pip install -e .
+	uv sync
 
 # Development server
 dev:
-	uvicorn src.main:app --reload --host 0.0.0.0 --port 8000
+	uv run uvicorn src.main:app --reload --host 0.0.0.0 --port 8000
 
 # Code linting
 lint:
-	ruff check src/ tests/
+	uv run ruff check src/ tests/
 
 # Code formatting
 format:
-	black src/ tests/
-	isort src/ tests/
+	uv run black src/ tests/
+	uv run isort src/ tests/
 
 # Type checking
 type-check:
-	mypy src/
+	uv run mypy src/
 
 # Run tests
 test:
-	pytest tests/ -v --cov=src --cov-report=term-missing
+	uv run pytest tests/ -v --cov=src --cov-report=term-missing
 
 # Run tests without coverage
 test-no-cov:
-	pytest tests/ -v
+	uv run pytest tests/ -v
 
 # CI - run all checks
 ci: lint format type-check test
@@ -44,4 +43,4 @@ clean:
 
 # Setup pre-commit hooks
 pre-commit-install:
-	pre-commit install
+	uv run pre-commit install
