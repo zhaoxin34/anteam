@@ -4,6 +4,7 @@ import { Provider } from 'react-redux'
 import { store } from './stores'
 import AdminLayout from './pages/admin/AdminLayout'
 import UserManagePage from './pages/admin/UserManagePage'
+import WorkspacePage from './pages/workspace/WorkspacePage'
 
 const LoginPage: React.FC = () => {
   const [username, setUsername] = useState('')
@@ -103,6 +104,9 @@ const HomePage: React.FC = () => {
           <Link to="/admin/users" style={{ padding: '8px 16px', marginRight: 8 }}>
             管理后台
           </Link>
+          <Link to="/workspaces" style={{ padding: '8px 16px' }}>
+            工作空间
+          </Link>
         </>
       ) : (
         <Link
@@ -175,6 +179,7 @@ function App() {
         <Routes>
           <Route path="/" element={<HomePage />} />
           <Route path="/login" element={<LoginPage />} />
+          <Route path="/workspaces" element={<WorkspacePage />} />
           <Route
             path="/admin"
             element={
