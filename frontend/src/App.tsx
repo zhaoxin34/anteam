@@ -5,6 +5,10 @@ import { store } from './stores'
 import AdminLayout from './pages/admin/AdminLayout'
 import UserManagePage from './pages/admin/UserManagePage'
 import WorkspacePage from './pages/workspace/WorkspacePage'
+import ChannelListPage from './pages/channel/ChannelListPage'
+import ChannelPage from './pages/channel/ChannelPage'
+import DMListPage from './pages/dm/DMListPage'
+import DMPage from './pages/dm/DMPage'
 
 const LoginPage: React.FC = () => {
   const [username, setUsername] = useState('')
@@ -107,6 +111,12 @@ const HomePage: React.FC = () => {
           <Link to="/workspaces" style={{ padding: '8px 16px' }}>
             工作空间
           </Link>
+          <Link to="/channels" style={{ padding: '8px 16px' }}>
+            频道
+          </Link>
+          <Link to="/dm" style={{ padding: '8px 16px' }}>
+            私信
+          </Link>
         </>
       ) : (
         <Link
@@ -180,6 +190,10 @@ function App() {
           <Route path="/" element={<HomePage />} />
           <Route path="/login" element={<LoginPage />} />
           <Route path="/workspaces" element={<WorkspacePage />} />
+          <Route path="/channels" element={<ChannelListPage />} />
+          <Route path="/channels/:channelId" element={<ChannelPage />} />
+          <Route path="/dm" element={<DMListPage />} />
+          <Route path="/dm/:conversationId" element={<DMPage />} />
           <Route
             path="/admin"
             element={
